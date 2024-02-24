@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `agentname` (
   `phone` char(13) NOT NULL,
   `pollingunit_uniqueid` int(11) NOT NULL,
   PRIMARY KEY (`name_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `agentname`

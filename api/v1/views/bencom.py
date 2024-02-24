@@ -89,3 +89,5 @@ def lga_result():
                     lga_results[lgas][each_res.party_abbreviation] += party_score
 
     return jsonify(lga_ids)
+
+
