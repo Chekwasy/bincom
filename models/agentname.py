@@ -22,12 +22,12 @@ class Agentname(BaseModel, Base):
         pollingunit_uniqueid = Column(Integer(11), nullable=False)
 
     else:
-        name_id = ""
+        name_id = 0
         email = ""
         first_name = ""
         last_name = ""
         phone = ""
-        pollingunit_uniqueid = ""
+        pollingunit_uniqueid = 0
 
     def __init__(self, *args, **kwargs):
         """initializes farm user"""

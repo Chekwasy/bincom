@@ -1,6 +1,16 @@
 #!/usr/bin/python3
 """ objects that handle all default RestFul API actions for Users """
-from models.bencom import Bencom
+from models.agentname import Agentname
+from models.announced_ward_results import Announced_ward_results
+from models.lga import Lga
+from models.party import Party
+from models.polling_unit import Polling_unit
+from models.states import States
+from models.ward import Ward
+from models.base_model import BaseModel, Base
+from models.announced_lga_results import Announced_lga_results
+from models.announced_pu_results import Announced_pu_results
+from models.announced_state_results import Announced_state_results
 from models import storage
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request

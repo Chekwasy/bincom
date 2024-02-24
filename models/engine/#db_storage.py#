@@ -9,8 +9,8 @@ from models.announced_ward_results import Announced_ward_results
 from models.lga import Lga
 from models.party import Party
 from models.polling_unit import Polling_unit
-from models.states import States
-from models.ward import Ward
+from models.party import 
+from models.party import Party
 from models.base_model import BaseModel, Base
 from models.announced_lga_results import Announced_lga_results
 from models.announced_pu_results import Announced_pu_results
@@ -20,7 +20,8 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {"Agentname": Agentname, "BaseModel": BaseModel, "Announced_ward_results": Announced_ward_results, "Lga": Lga, "Party": Party, "Polling_unit": Polling_unit, "States": States, "Ward": Ward, "Announced_lga_results": Announced_lga_results, "Announced_pu_results": Announced_pu_results, "Announced_state_results": Announced_state_results}
+classes = {"Farm": Farm, "Buildex": Buildex,
+           "Solar": Solar, "Annie": Annie}
 
 
 class DBStorage:

@@ -5,15 +5,20 @@ Contains the FileStorage class
 
 import json
 import models
-from models.farm import Farm
+from models.agentname import Agentname
+from models.announced_ward_results import Announced_ward_results
+from models.lga import Lga
+from models.party import Party
+from models.polling_unit import Polling_unit
+from models.states import States
+from models.ward import Ward
 from models.base_model import BaseModel
-from models.buildex import Buildex
-from models.solar import Solar
-from models.annie import Annie
+from models.announced_lga_results import Announced_lga_results
+from models.announced_pu_results import Announced_pu_results
+from models.announced_state_results import Announced_state_results
 from hashlib import md5
 
-classes = {"Farm": Farm, "BaseModel": BaseModel, "Buildex": Buildex,
-           "Solar": Solar, "Annie": Annie}
+classes = {"Agentname": Agentname, "BaseModel": BaseModel, "Announced_ward_results": Announced_ward_results, "Lga": Lga, "Party": Party, "Polling_unit": Polling_unit, "States": States, "Ward": Ward, "Announced_lga_results": Announced_lga_results, "Announced_pu_results": Announced_pu_results, "Announced_state_results": Announced_state_results}
 
 
 class FileStorage:

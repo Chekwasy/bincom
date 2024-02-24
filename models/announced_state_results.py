@@ -10,7 +10,7 @@ from sqlalchemy.orm import relationship
 from hashlib import md5
 
 
-class announced_state_results(BaseModel, Base):
+class Announced_state_results(BaseModel, Base):
     """Representation for announced_state_results"""
     if models.storage_t == 'db':
         __tablename__ = 'announced_state_results'
@@ -23,10 +23,10 @@ class announced_state_results(BaseModel, Base):
         user_ip_address = Column(String(50), nullable=False)
 
     else:
-        result_id = ""
+        result_id = 0
         state_name = ""
         party_abbreviation = ""
-        party_score = ""
+        party_score = 0
         entered_by_user = ""
         date_entered = ""
         user_ip_address = ""
