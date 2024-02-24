@@ -18,12 +18,11 @@ from flask import abort, jsonify, make_response, request
 
 
 @app_views.route('/polling_unit_result', methods=['GET'], strict_slashes=False)
-def list_farm_user():
+def polling_unit_result():
     """
-    list all farm user
+    list all polling result
     """
 
-    lst = []
     all_Agentname = storage.all(Agentname).values()
     all_Announced_ward_results = storage.all(Announced_ward_results).values()
     all_Lga = storage.all(Lga).values()
@@ -51,5 +50,59 @@ def list_farm_user():
     all_Party_dict = {}
     for b in all_Party:
         all_Party_dict[b.id] = b.partyid
-    
-    return jsonify(lst)
+    res = {}
+    for f in all_Party_dict.values():
+        res[f] = 0
+    for c in req_poll_res:
+        for g in all_Party_dict.values():
+            if g == c.party_abbreviation:
+                res[g] = res[g] + c.party_score
+    return jsonify(res)
+
+
+@app_views.route('/lga_announced_result', methods=['GET'], strict_slashes=False)
+def lga_result():
+    """
+    list all lga result
+    """
+
+    all_Agentname = storage.all(Agentname).values()
+    all_Announced_ward_results = storage.all(Announced_ward_results).values()
+    all_Lga = storage.all(Lga).values()
+    all_Party = storage.all(Party).values()
+    all_Polling_unit = storage.all(Polling_unit).values()
+    all_States = storage.all(States).values()
+    all_Ward = storage.all(Ward).values()
+    all_Announced_lga_results = storage.all(Announced_lga_results).values()
+    all_Announced_pu_results = storage.all(Announced_pu_results).values()
+    all_Announced_state_results = storage.all(Announced_state_results).values()
+
+
+    lga_ids = []
+    for k in all_Lga:
+        lga_ids.append(k.lga_id)
+    lga_polling_units = {}
+    for l in lga_ids:
+        lga_polling_units[l] = []
+    for m in all_Polling_unit:
+        for n in lga_polling_units.keys():
+            if m.lga_id == n:
+                lga_polling_units[n].append(m.uniqueid)
+
+    state_name = request.get("state_id")
+    if not state_id or state_id == 25:
+        return
+
+    lga_results = {}
+    for r in lga_ids:
+        lga_results[r] = {}
+        for b in all_Party:
+            lga_results[r][b.partyid] = 0
+
+    for lgas, poll_units in lga_polling_units.items():
+        for poll_unit in poll_units:
+            for each_res in all_Announced_pu_results:
+    	        if each_res.polling_unit_uniqueid == str(poll_unit):
+                    lga_results[lgas][each_res.party_abbreviation] += party_score
+
+    return jsonify(lga_results)
