@@ -17,17 +17,39 @@ from flask import abort, jsonify, make_response, request
 
 
 
-@app_views.route('/chekwasy_farm/2626632/all_order', methods=['GET'], strict_slashes=False)
+@app_views.route('/polling_unit_result', methods=['GET'], strict_slashes=False)
 def list_farm_user():
     """
     list all farm user
     """
 
     lst = []
-    all_fm = storage.all(Farm).values()
+    all_Agentname = storage.all(Agentname).values()
+    all_Announced_ward_results = storage.all(Announced_ward_results).values()
+    all_Lga = storage.all(Lga).values()
+    all_Party = storage.all(Party).values()
+    all_Polling_unit = storage.all(Polling_unit).values()
+    all_States = storage.all(States).values()
+    all_Ward = storage.all(Ward).values()
+    all_Announced_lga_results = storage.all(Announced_lga_results).values()
+    all_Announced_pu_results = storage.all(Announced_pu_results).values()
+    all_Announced_state_results = storage.all(Announced_state_results).values()
 
-    for dic in all_fm:
-    	lst.append(dic.to_dict())
+    state_name = request.get("state_id")
+    if not state_id or state_id == 25:
+        return
+    polling_unit_uniq_id = str(request.get("uniqueid"))
+    if not polling_unit_uniq_id:
+        return
+
+    req_poll_res = []
+    for p in all_Announced_pu_results:
+    	if p.polling_unit_uniqueid == polling_unit_uniq_id:
+            req_poll_res.append(p)
+    if len(req_poll_res) == 0:
+        return
+    all_Party_dict = {}
+    for b in all_Party:
+        all_Party_dict[b.id] = b.partyid
+    
     return jsonify(lst)
-
-
