@@ -1,0 +1,6 @@
+export CHEKWASY_MYSQL_USER=hbnb_dev
+export CHEKWASY_MYSQL_PWD=hbnb_dev_pwd
+export CHEKWASY_MYSQL_HOST=localhost
+export CHEKWASY_MYSQL_DB=bincomphptest
+export CHEKWASY_TYPE_STORAGE=db
+export CHEKWASY_API_PORT=5001

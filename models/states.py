@@ -5,7 +5,7 @@ import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.orm import relationship
 from hashlib import md5
 
@@ -14,7 +14,7 @@ class States(BaseModel, Base):
     """Representation for states """
     if models.storage_t == 'db':
         __tablename__ = 'states'
-        state_id = Column(Integer(11), nullable=False, primary_key=True)
+        state_id = Column(Integer(), nullable=False, primary_key=True)
         state_name = Column(String(50), nullable=False)
 
     else:

@@ -5,7 +5,7 @@ import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.orm import relationship
 from hashlib import md5
 
@@ -14,12 +14,12 @@ class Agentname(BaseModel, Base):
     """Representation for agentname """
     if models.storage_t == 'db':
         __tablename__ = 'agentname'
-        name_id = Column(Integer(11), nullable=False, autoincrement=True, primary_key=True)
+        name_id = Column(Integer(), nullable=False, autoincrement=True, primary_key=True)
         first_name = Column(String(255), nullable=False)
         last_name = Column(String(255), nullable=False)
         email = Column(String(255), nullable=True)
         phone = Column(String(13), nullable=False)
-        pollingunit_uniqueid = Column(Integer(11), nullable=False)
+        pollingunit_uniqueid = Column(Integer(), nullable=False)
 
     else:
         name_id = 0

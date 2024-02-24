@@ -5,7 +5,7 @@ import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.orm import relationship
 from hashlib import md5
 
@@ -14,13 +14,13 @@ class Lga(BaseModel, Base):
     """Representation for lga """
     if models.storage_t == 'db':
         __tablename__ = 'lga'
-        uniqueid = Column(Integer(11), nullable=False, autoincrement=True, primary_key=True)
-        lga_id = Column(Integer(11), nullable=False)
+        uniqueid = Column(Integer(), nullable=False, autoincrement=True, primary_key=True)
+        lga_id = Column(Integer(), nullable=False)
         lga_name = Column(String(50), nullable=False)
-        state_id = Column(Integer(50), nullable=False)
+        state_id = Column(Integer(), nullable=False)
         lga_description = Column(String, nullable=False)
         entered_by_user = Column(String(50), nullable=False)
-        date_entered = Column(DateTime, nullable=False)
+        date_entered = Column(DateTime)
         user_ip_address = Column(String(50), nullable=False)
 
     else:

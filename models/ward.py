@@ -5,19 +5,19 @@ import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.orm import relationship
 from hashlib import md5
 
 
-class ward(BaseModel, Base):
+class Ward(BaseModel, Base):
     """Represen ward"""
     if models.storage_t == 'db':
         __tablename__ = 'ward'
-        uniqueid = Column(Integer(11), nullable=False, autoincrement=True, primary_key=True)
-        ward_id = Column(Integer(11), nullable=False)
+        uniqueid = Column(Integer(), nullable=False, autoincrement=True, primary_key=True)
+        ward_id = Column(Integer(), nullable=False)
         ward_name = Column(String(50), nullable=False)
-        lga_id = Column(Integer(11), nullable=False)
+        lga_id = Column(Integer(), nullable=False)
         ward_description = Column(String, nullable=False)
         entered_by_user = Column(String(50), nullable=False)
         date_entered = Column(DateTime, nullable=False)

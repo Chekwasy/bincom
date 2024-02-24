@@ -17,27 +17,18 @@ from flask import abort, jsonify, make_response, request
 
 
 
-@app_views.route('/polling_unit_result', methods=['GET'], strict_slashes=False)
-def polling_unit_result():
+@app_views.route('/polling_unit_result/<poll>', methods=['GET'], strict_slashes=False)
+def polling_unit_result(poll):
     """
     list all polling result
     """
 
-    all_Agentname = storage.all(Agentname).values()
-    all_Announced_ward_results = storage.all(Announced_ward_results).values()
     all_Lga = storage.all(Lga).values()
     all_Party = storage.all(Party).values()
     all_Polling_unit = storage.all(Polling_unit).values()
-    all_States = storage.all(States).values()
-    all_Ward = storage.all(Ward).values()
-    all_Announced_lga_results = storage.all(Announced_lga_results).values()
     all_Announced_pu_results = storage.all(Announced_pu_results).values()
-    all_Announced_state_results = storage.all(Announced_state_results).values()
 
-    state_name = request.get("state_id")
-    if not state_id or state_id == 25:
-        return
-    polling_unit_uniq_id = str(request.get("uniqueid"))
+    polling_unit_uniq_id = str(poll)
     if not polling_unit_uniq_id:
         return
 
@@ -66,21 +57,16 @@ def lga_result():
     list all lga result
     """
 
-    all_Agentname = storage.all(Agentname).values()
-    all_Announced_ward_results = storage.all(Announced_ward_results).values()
     all_Lga = storage.all(Lga).values()
     all_Party = storage.all(Party).values()
     all_Polling_unit = storage.all(Polling_unit).values()
-    all_States = storage.all(States).values()
-    all_Ward = storage.all(Ward).values()
-    all_Announced_lga_results = storage.all(Announced_lga_results).values()
     all_Announced_pu_results = storage.all(Announced_pu_results).values()
-    all_Announced_state_results = storage.all(Announced_state_results).values()
 
 
     lga_ids = []
     for k in all_Lga:
         lga_ids.append(k.lga_id)
+
     lga_polling_units = {}
     for l in lga_ids:
         lga_polling_units[l] = []
@@ -89,9 +75,6 @@ def lga_result():
             if m.lga_id == n:
                 lga_polling_units[n].append(m.uniqueid)
 
-    state_name = request.get("state_id")
-    if not state_id or state_id == 25:
-        return
 
     lga_results = {}
     for r in lga_ids:
@@ -105,4 +88,4 @@ def lga_result():
     	        if each_res.polling_unit_uniqueid == str(poll_unit):
                     lga_results[lgas][each_res.party_abbreviation] += party_score
 
-    return jsonify(lga_results)
+    return jsonify(lga_ids)

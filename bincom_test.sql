@@ -24,10 +24,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Table structure for table `agentname`
 --
-
+USE bincomphptest;
 DROP TABLE IF EXISTS `agentname`;
 CREATE TABLE IF NOT EXISTS `agentname` (
   `name_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -55,6 +58,9 @@ INSERT INTO `agentname` (`name_id`, `firstname`, `lastname`, `email`, `phone`, `
 DROP TABLE IF EXISTS `announced_lga_results`;
 CREATE TABLE IF NOT EXISTS `announced_lga_results` (
   `result_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lga_name` varchar(50) NOT NULL,
   `party_abbreviation` char(4) NOT NULL,
   `party_score` int(11) NOT NULL,
@@ -304,6 +310,9 @@ INSERT INTO `announced_lga_results` (`result_id`, `lga_name`, `party_abbreviatio
 DROP TABLE IF EXISTS `announced_pu_results`;
 CREATE TABLE IF NOT EXISTS `announced_pu_results` (
   `result_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `polling_unit_uniqueid` varchar(50) NOT NULL,
   `party_abbreviation` char(4) NOT NULL,
   `party_score` int(11) NOT NULL,
@@ -478,6 +487,9 @@ INSERT INTO `announced_pu_results` (`result_id`, `polling_unit_uniqueid`, `party
 DROP TABLE IF EXISTS `announced_state_results`;
 CREATE TABLE IF NOT EXISTS `announced_state_results` (
   `result_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `state_name` varchar(50) NOT NULL,
   `party_abbreviation` char(4) NOT NULL,
   `party_score` int(11) NOT NULL,
@@ -501,6 +513,9 @@ CREATE TABLE IF NOT EXISTS `announced_state_results` (
 DROP TABLE IF EXISTS `announced_ward_results`;
 CREATE TABLE IF NOT EXISTS `announced_ward_results` (
   `result_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ward_name` varchar(50) NOT NULL,
   `party_abbreviation` char(4) NOT NULL,
   `party_score` int(11) NOT NULL,
@@ -523,10 +538,13 @@ CREATE TABLE IF NOT EXISTS `announced_ward_results` (
 
 DROP TABLE IF EXISTS `lga`;
 CREATE TABLE IF NOT EXISTS `lga` (
-  `uniqueid` int(11) NOT NULL AUTO_INCREMENT,
-  `lga_id` int(11) NOT NULL,
+  `uniqueid` int NOT NULL AUTO_INCREMENT,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `lga_id` int NOT NULL,
   `lga_name` varchar(50) NOT NULL,
-  `state_id` int(50) NOT NULL,
+  `state_id` int NOT NULL,
   `lga_description` text,
   `entered_by_user` varchar(50) NOT NULL,
   `date_entered` datetime NOT NULL,
@@ -575,9 +593,11 @@ DROP TABLE IF EXISTS `party`;
 CREATE TABLE IF NOT EXISTS `party` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `partyid` varchar(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `partyname` varchar(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10;
 
 --
 -- Dumping data for table `party`
@@ -603,6 +623,9 @@ INSERT INTO `party` (`id`, `partyid`, `partyname`) VALUES
 DROP TABLE IF EXISTS `polling_unit`;
 CREATE TABLE IF NOT EXISTS `polling_unit` (
   `uniqueid` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `polling_unit_id` int(11) NOT NULL,
   `ward_id` int(11) NOT NULL,
   `lga_id` int(11) NOT NULL,
@@ -611,7 +634,7 @@ CREATE TABLE IF NOT EXISTS `polling_unit` (
   `polling_unit_name` varchar(50) DEFAULT NULL,
   `polling_unit_description` text,
   `lat` varchar(255) DEFAULT NULL,
-  `long` varchar(255) DEFAULT NULL,
+  `Long` varchar(255) DEFAULT NULL,
   `entered_by_user` varchar(50) DEFAULT NULL,
   `date_entered` datetime DEFAULT NULL,
   `user_ip_address` varchar(50) DEFAULT NULL,
@@ -905,6 +928,9 @@ INSERT INTO `polling_unit` (`uniqueid`, `polling_unit_id`, `ward_id`, `lga_id`, 
 DROP TABLE IF EXISTS `states`;
 CREATE TABLE IF NOT EXISTS `states` (
   `state_id` int(11) NOT NULL,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `state_name` varchar(50) NOT NULL,
   PRIMARY KEY (`state_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -961,6 +987,9 @@ INSERT INTO `states` (`state_id`, `state_name`) VALUES
 DROP TABLE IF EXISTS `ward`;
 CREATE TABLE IF NOT EXISTS `ward` (
   `uniqueid` int(11) NOT NULL AUTO_INCREMENT,
+  `id` varchar(60) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `ward_id` int(11) NOT NULL,
   `ward_name` varchar(50) NOT NULL,
   `lga_id` int(11) NOT NULL,

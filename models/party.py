@@ -5,7 +5,7 @@ import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.orm import relationship
 from hashlib import md5
 
@@ -14,7 +14,7 @@ class Party(BaseModel, Base):
     """Representation for party """
     if models.storage_t == 'db':
         __tablename__ = 'party'
-        id = Column(Integer(11), nullable=False, autoincrement=True, primary_key=True)
+        id = Column(Integer(), nullable=False, autoincrement=True, primary_key=True)
         partyid = Column(String(11), nullable=False)
         partyname = Column(String(11), nullable=False)
 

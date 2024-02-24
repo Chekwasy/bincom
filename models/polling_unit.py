@@ -5,7 +5,7 @@ import models
 from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.orm import relationship
 from hashlib import md5
 
@@ -14,18 +14,18 @@ class Polling_unit(BaseModel, Base):
     """Representation for polling_unit """
     if models.storage_t == 'db':
         __tablename__ = 'polling_unit'
-        uniqueid = Column(Integer(11), nullable=False, autoincrement=True, primary_key=True)
-        polling_unit_id = Column(Integer(11), nullable=False)
-        ward_id = Column(Integer(11), nullable=False)
-        lga_id = Column(Integer(11), nullable=False)
-        uniquewardid = Column(Integer(11), nullable=True)
+        uniqueid = Column(Integer(), nullable=False, autoincrement=True, primary_key=True)
+        polling_unit_id = Column(Integer(), nullable=False)
+        ward_id = Column(Integer(), nullable=False)
+        lga_id = Column(Integer(), nullable=False)
+        uniquewardid = Column(Integer(), nullable=True)
         polling_unit_number = Column(String(50), nullable=True)
         polling_unit_name = Column(String(50), nullable=True)
         polling_unit_description = Column(String,nullable=False)
         lat = Column(String(255), nullable=True)
         Long = Column(String(255), nullable=True)
         entered_by_user = Column(String(50), nullable=True)
-        date_entered = (DateTime, nullable=True)
+        date_entered = (DateTime)
         user_ip_address = Column(String(50), nullable=True)
 
     else:
