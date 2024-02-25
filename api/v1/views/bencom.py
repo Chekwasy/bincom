@@ -86,8 +86,30 @@ def lga_result():
         for poll_unit in poll_units:
             for each_res in all_Announced_pu_results:
     	        if each_res.polling_unit_uniqueid == str(poll_unit):
-                    lga_results[lgas][each_res.party_abbreviation] += party_score
+                    if each_res.party_abbreviation == 'LABO':
+                        pty = 'LABOUR'
+                    else:
+                        pty = each_res.party_abbreviation
+                    lga_results[lgas][pty] += each_res.party_score
 
-    return jsonify(lga_ids)
+    return jsonify(lga_results)
+
+
+@app_views.route('/polling', methods=['GET'], strict_slashes=False)
+def polling():
+    """
+    list all polling result
+    """
+
+    all_Lga = storage.all(Lga).values()
+    all_Party = storage.all(Party).values()
+    all_Polling_unit = storage.all(Polling_unit).values()
+    all_Announced_pu_results = storage.all(Announced_pu_results).values()
+
+    lsst = []
+    for ccc in all_Announced_pu_results:
+        lsst.append(ccc.to_dict())
+
+    return jsonify(lsst)
 
 
