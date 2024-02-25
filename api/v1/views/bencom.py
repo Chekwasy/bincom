@@ -63,12 +63,12 @@ def lga_result():
     all_Announced_pu_results = storage.all(Announced_pu_results).values()
 
 
-    lga_ids = []
+    lga_nam = []
     for k in all_Lga:
-        lga_ids.append(k.lga_id)
+        lga_nam.append(k.lga_id)
 
     lga_polling_units = {}
-    for l in lga_ids:
+    for l in lga_nam:
         lga_polling_units[l] = []
     for m in all_Polling_unit:
         for n in lga_polling_units.keys():
@@ -77,7 +77,7 @@ def lga_result():
 
 
     lga_results = {}
-    for r in lga_ids:
+    for r in lga_nam:
         lga_results[r] = {}
         for b in all_Party:
             lga_results[r][b.partyid] = 0
@@ -95,21 +95,18 @@ def lga_result():
     return jsonify(lga_results)
 
 
-@app_views.route('/polling', methods=['GET'], strict_slashes=False)
-def polling():
+@app_views.route('/add_polling_details', methods=['POST'], strict_slashes=False)
+def add_poll():
     """
-    list all polling result
+    Creates a pollin unit
     """
+    if not request.get_json():
+        abort(400, description="Not a JSON")
 
-    all_Lga = storage.all(Lga).values()
-    all_Party = storage.all(Party).values()
-    all_Polling_unit = storage.all(Polling_unit).values()
-    all_Announced_pu_results = storage.all(Announced_pu_results).values()
-
-    lsst = []
-    for ccc in all_Announced_pu_results:
-        lsst.append(ccc.to_dict())
-
-    return jsonify(lsst)
-
-
+    data = request.get_json()
+    try:
+        instance = Polling_unit(**data)
+        instance.save()
+        return make_response(jsonify(instance.to_dict()), 201)
+    except Exception:
+        pass
