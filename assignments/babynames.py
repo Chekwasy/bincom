@@ -21,8 +21,8 @@ for a in range(len(names) - count - 16):
     if matches:
         string_lst.append(matches)
 
-
-print(string_lst)
+for b in string_lst:
+    print(b)
 
 
 
