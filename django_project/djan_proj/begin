@@ -1,0 +1,4 @@
+"to start an app use below. we can have multiple apps here"
+python3 manage.py startapp bincom
+#for creating users app
+python3 manage.py startapp users

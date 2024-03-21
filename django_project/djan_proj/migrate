@@ -1,0 +1,9 @@
+#To apply migration for default tables at start and when changes to migrate.py file
+python3 manage.py makemigrations
+#apply the migrate for at start and when changes to migrate.py file
+python3 manage.py migrate
+
+#add a superuser for admin page
+python3 manage.py createsuperuser
+
+#run server and enter /admin

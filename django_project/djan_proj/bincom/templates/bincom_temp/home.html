@@ -1,0 +1,8 @@
+{% extends "bincom_temp/base.html" %}
+{% block title %}Home{% endblock title %}
+{% block template %}
+	<h1>Home</h1>
+    {% for name in names %}
+		<h1>{{ name }}</h1>
+	{% endfor %}
+{% endblock template %}

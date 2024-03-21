@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% if title %}
+        <title>Multimedia site - {{ title }}</title>
+    {% else %}
+        <title>Multimedia site</title>
+    {% endif %}
+  </head>
+  <body>
+      {% block content %} {% endblock %}
+  </body>
+
+</html>

@@ -1,0 +1,11 @@
+pip install django
+
+"list django stuff"
+django-admin
+
+"create project files to begin with"
+django-admin startproject project_name
+
+
+"run the server"
+python3 manage.py runserver
