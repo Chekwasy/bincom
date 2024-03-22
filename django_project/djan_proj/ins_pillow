@@ -1,0 +1,4 @@
+# what makes possibel to use python with images
+
+pip3 install pillow
+#remember makemigration and migrate
