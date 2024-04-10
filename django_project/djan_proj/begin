@@ -2,3 +2,6 @@
 python3 manage.py startapp bincom
 #for creating users app
 python3 manage.py startapp users
+
+#run server for the site
+python3 manage.py runserver

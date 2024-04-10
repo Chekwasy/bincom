@@ -13,7 +13,7 @@ cur = conn.cursor()
 cur.execute("""CREATE TABLE IF NOT EXISTS todo (id INT PRIMARY KEY, todo_item VARCHAR(255));"""
 )
 
-cur.execute("""INSERT INTO todo (id, todo_item) VALUES (1, 'wake up'), (2, 'pray'), (3, 'bath'), (4, 'dress up'), (5, 'eat'), (6, 'goto work');""")
+cur.execute("""INSERT INTO todo (id, todo_item) VALUES (10, 'wake up'), (11, 'pray'), (12, 'bath'), (13, 'dress up'), (14, 'eat'), (15, 'goto work');""")
 
 conn.commit()
 
